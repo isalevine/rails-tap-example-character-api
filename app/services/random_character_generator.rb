@@ -33,7 +33,7 @@ class RandomCharacterGenerator
 
     def roll_stats(character, stats_array, points_pool, max_roll)
         stats_array.each_with_index do |stat, index|
-            roll = rand(1..max_roll)                                           .tap {|r| puts "roll: #{r}"}
+            roll = rand(1..max_roll)                                    .tap {|r| puts "roll: #{r}"}
             remaining_stats = ((stats_array.length - 1) - index)        .tap {|r| puts "remaining_stats: #{r}"}
                                                                         .tap {|r| puts "points_pool (before): #{points_pool}"}
             if remaining_stats == 0
@@ -43,7 +43,7 @@ class RandomCharacterGenerator
                 max_points = points_pool - remaining_stats
                 character[stat] = max_points
                 points_pool -= max_points
-            elsif points_pool - roll < 0        # same behavior as first if condition -- not DRY...
+            elsif points_pool - roll < 0        # same behavior as first `if` condition -- important to check this AFTER first `elsif` condition...
                 character[stat] = points_pool
                 points_pool = 0
             else
