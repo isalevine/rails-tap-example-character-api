@@ -28,5 +28,25 @@ RSpec.describe RandomCharacterGenerator do
             expect(Character.count).to eq (starting_database_count + 1)
         end
     end
+
     
+    # RUNNING BOTH TESTS SIMULTANEOUSLY SCREWS UP "saves the Character to the database" COUNT ABOVE -- NO IDEA WHY...
+    
+    # describe "#benchmark running rcg.new_character(name) 100 times" do
+    #     starting_database_count = Character.count
+    #     rcg = RandomCharacterGenerator.new
+    #     player = Player.create(user_name: "Ronald McDonald", display_name: "Mac")
+
+    #     start_time = Time.now
+    #     100.times do
+    #         character = rcg.new_character("Ronnie the Rat", player)
+    #     end
+    #     total_time = Time.now - start_time
+    #     puts "Benchmark for rcg.new_character 100 times: #{total_time} seconds"
+
+    #     it "successfully adds 100 characters to the database" do
+    #         expect(Character.count).to eq (starting_database_count + 100)
+    #     end
+    # end
+
 end
