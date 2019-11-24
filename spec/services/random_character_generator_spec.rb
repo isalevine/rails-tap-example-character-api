@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RandomCharacterGenerator do
 
-    describe "#def new_character(name)" do
+    describe "#new_character(name)" do
         starting_database_count = Character.count
 
         rcg = RandomCharacterGenerator.new
@@ -29,7 +29,7 @@ RSpec.describe RandomCharacterGenerator do
         end
     end
 
-    
+
     # RUNNING BOTH TESTS SIMULTANEOUSLY SCREWS UP "saves the Character to the database" COUNT ABOVE -- NO IDEA WHY...
     
     # describe "#benchmark running rcg.new_character(name) 100 times" do
