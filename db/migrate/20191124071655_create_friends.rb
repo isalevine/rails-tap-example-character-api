@@ -1,3 +1,5 @@
+# foreign_key: {to_table: :table_name} trick via: https://stackoverflow.com/a/41195628
+
 class CreateFriends < ActiveRecord::Migration[6.0]
   def change
     create_table :friends do |t|
