@@ -51,9 +51,6 @@ class RandomCharacterGenerator
                 max_points = points_pool - remaining_stats
                 character[stat] = max_points
                 points_pool -= max_points
-            elsif points_pool - roll < 0        # same behavior as first `if` condition -- important to check this AFTER first `elsif` condition...
-                character[stat] = points_pool
-                points_pool = 0
             else
                 character[stat] = roll
                 points_pool -= roll
