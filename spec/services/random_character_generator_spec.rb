@@ -6,7 +6,8 @@ RSpec.describe RandomCharacterGenerator do
         starting_database_count = Character.count
 
         rcg = RandomCharacterGenerator.new
-        character = rcg.new_character("Mac")
+        player = Player.create(user_name: "Ronald McDonald", display_name: "Mac")
+        character = rcg.new_character("Ronnie the Rat", player)
 
         it "creates a new Character instance" do
             expect(character).to be_an_instance_of Character

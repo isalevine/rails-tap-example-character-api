@@ -8,12 +8,13 @@ class RandomCharacterGenerator
         @max_roll = 6
     end
 
-    def new_character(name)
-        character = Character.new(name: name)
+    def new_character(name, player)
+        character = Character.new(name: name, player: player)
         stats_array = ["strength", "dexterity", "intelligence", "charisma"]
         points_pool = 9
         max_roll = 6
         roll_stats(character, stats_array, points_pool, max_roll)
+        character.save!
         character
 
 
@@ -23,6 +24,7 @@ class RandomCharacterGenerator
         #     stats_array = ["strength", "dexterity", "intelligence", "charisma"]
         #     points_pool = 9
         #     roll_stats(character, stats_array, points_pool)
+        #     save!
         # end
     end
 
