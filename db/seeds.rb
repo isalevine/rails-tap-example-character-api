@@ -9,3 +9,8 @@
 Player.destroy_all
 Character.destroy_all
 Friend.destroy_all
+
+
+player1 = Player.create(user_name: "frak", display_name: "Ongo Gablogian")
+player2 = Player.create(user_name: "dennis", display_name: "G0ld3ng0d")
+player3 = Player.create(user_name: "chrundle", display_name: "4 +hU rA+z")
