@@ -11,10 +11,8 @@ RSpec.describe RandomCharacterGenerator do
             expect(character).to be_an_instance_of Character
         end
 
-        it "creates a points_pool variable with 20 starting points" do
-        end
-
-        it "randomly allocates 20 points between Strength, Dexterity, Intelligence, and Charisma" do
+        it "randomly allocates 20 stat points between Strength, Dexterity, Intelligence, and Charisma" do
+            expect(character.strength + character.dexterity + character.intelligence + character.charisma).to eq 20
         end
 
         it "saves the Character to the database" do
