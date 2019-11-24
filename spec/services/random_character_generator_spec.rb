@@ -4,25 +4,23 @@ RSpec.describe RandomCharacterGenerator do
 
     describe "#def new_character(name)" do
         starting_database_count = Character.count
-        stat_points = 9
-        stat_max = 6        # highest value of RNG, ln.82: roll = rand(1..6)
 
-        random_character_generator = RandomCharacterGenerator.new
-        character = random_character_generator.new_character("Mac")
+        rcg = RandomCharacterGenerator.new
+        character = rcg.new_character("Mac")
 
         it "creates a new Character instance" do
             expect(character).to be_an_instance_of Character
         end
 
-        it "randomly allocates all #{stat_points} stat points between Strength, Dexterity, Intelligence, and Charisma" do
-            expect(character.strength + character.dexterity + character.intelligence + character.charisma).to eq stat_points
+        it "randomly allocates all #{rcg.points_pool} stat points between #{rcg.stats_array.to_s} " do
+            expect(rcg.stats_array.reduce(0) {|points, stat| points += character[stat]}).to eq rcg.points_pool 
         end
 
-        it "allocates stat points so they do not exceed maximum amount (#{stat_max})" do
-            expect(character.strength).to be_between(1, stat_max)
-            expect(character.dexterity).to be_between(1, stat_max)
-            expect(character.intelligence).to be_between(1, stat_max)
-            expect(character.charisma).to be_between(1, stat_max)
+        it "allocates stat points so they do not exceed max roll (#{rcg.max_roll})" do
+            expect(character.strength).to be_between(1, rcg.max_roll)
+            expect(character.dexterity).to be_between(1, rcg.max_roll)
+            expect(character.intelligence).to be_between(1, rcg.max_roll)
+            expect(character.charisma).to be_between(1, rcg.max_roll)
         end
 
         it "saves the Character to the database" do
