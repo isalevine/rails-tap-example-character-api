@@ -23,7 +23,16 @@ class RandomCharacterGenerator
         # Character.new.tap do |character|
         #     stats_array = ["strength", "dexterity", "intelligence", "charisma"]
         #     points_pool = 9
-        #     roll_stats(character, stats_array, points_pool)
+        #     max_roll = 6
+        #     roll_stats(character, stats_array, points_pool, max_roll)
+        #     save!
+        # end
+
+
+        # alt after refactoring variables into attributes:
+        # =====================================================
+        # Character.new.tap do |character|
+        #     roll_stats(character, @stats_array, @points_pool, @max_roll)
         #     save!
         # end
     end
