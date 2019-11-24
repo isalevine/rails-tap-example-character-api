@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_060524) do
+ActiveRecord::Schema.define(version: 2019_11_24_071655) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -41,6 +41,6 @@ ActiveRecord::Schema.define(version: 2019_11_24_060524) do
   end
 
   add_foreign_key "characters", "players"
-  add_foreign_key "friends", "player_ones"
-  add_foreign_key "friends", "player_twos"
+  add_foreign_key "friends", "players", column: "player_one_id"
+  add_foreign_key "friends", "players", column: "player_two_id"
 end
