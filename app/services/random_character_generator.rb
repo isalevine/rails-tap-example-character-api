@@ -10,13 +10,13 @@ class RandomCharacterGenerator
 
 
     def new_character(name, player)
-        character = Character.new(name: name, player: player)
-        stats_array = ["strength", "dexterity", "intelligence", "charisma"]
-        points_pool = 9
-        max_roll = 6
-        roll_stats(character, stats_array, points_pool, max_roll)
-        character.save!
-        character
+        # character = Character.new(name: name, player: player)
+        # stats_array = ["strength", "dexterity", "intelligence", "charisma"]
+        # points_pool = 9
+        # max_roll = 6
+        # roll_stats(character, stats_array, points_pool, max_roll)
+        # character.save!
+        # character
 
 
         # alt using .tap:
@@ -32,10 +32,10 @@ class RandomCharacterGenerator
 
         # alt after refactoring variables into attributes:
         # =====================================================
-        # Character.new.tap do |character|
-        #     roll_stats(character, @stats_array, @points_pool, @max_roll)
-        #     save!
-        # end
+        Character.new(name: name, player: player).tap do |character|
+            roll_stats(character, @stats_array, @points_pool, @max_roll)
+            character.save!
+        end
     end
 
 
