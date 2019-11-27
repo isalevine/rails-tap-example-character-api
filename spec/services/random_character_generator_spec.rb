@@ -57,6 +57,7 @@ RSpec.describe RandomCharacterGenerator do
             expect(rcg.stats_array.reduce(0) {|points, stat| points += character[stat]}).to eq rcg.points_pool 
         end
 
+        # change text to reflect that test is for BETWEEN 1 - max_roll
         it "allocates stat points so they do not exceed max roll (#{rcg.max_roll})" do
             expect(character.strength).to be_between(1, rcg.max_roll)
             expect(character.dexterity).to be_between(1, rcg.max_roll)
@@ -67,6 +68,8 @@ RSpec.describe RandomCharacterGenerator do
         it "saves the Character to the database" do
             expect(Character.count).to eq (starting_database_count + 1)
         end
+
+        # add a line to remove last Character (and Player) from db to clean it up??
     end
 
 
