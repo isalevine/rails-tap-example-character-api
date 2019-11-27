@@ -44,7 +44,7 @@ class RandomCharacterGenerator
     def roll_stats(character, stats_array, points_pool, max_roll)
         stats_array.each_with_index do |stat, index|
             roll = rand(1..max_roll)                                    .tap {|r| puts "roll: #{r}"}
-            remaining_stats = (stats_array.length - 1) - index          .tap {|r| puts "remaining_stats: #{r}"}
+            remaining_stats = ((stats_array.length - 1) - index)        .tap {|r| puts "remaining_stats: #{r}"}
                                                                         .tap {|r| puts "points_pool (before): #{points_pool}"}
             if remaining_stats == 0
                 character[stat] = points_pool
