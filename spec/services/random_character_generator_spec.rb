@@ -28,7 +28,10 @@ RSpec.describe RandomCharacterGenerator do
             expect(Character.count).to eq (starting_database_count + 1)
         end
 
-        # add a line to remove last Character (and Player) from db to clean it up??
+        after(:all) do
+            Character.last.delete
+            Player.last.delete
+        end
     end
 
 
