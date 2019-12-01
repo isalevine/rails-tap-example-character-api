@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe RandomCharacterGenerator do
 
     describe "#new_character" do
-        starting_database_count = Character.count
+        starting_character_count = Character.count
+        starting_player_count = Player.count
 
         rcg = RandomCharacterGenerator.new
         player = Player.create(user_name: "Ronald McDonald", display_name: "Mac")
@@ -25,13 +26,14 @@ RSpec.describe RandomCharacterGenerator do
         end
 
         it "saves the Character to the database" do
-            expect(Character.count).to eq (starting_database_count + 1)
+            expect(Character.count).to eq (starting_character_count + 1)
         end
 
         after(:all) do
             Character.last.delete
             Player.last.delete
-            expect(Character.count).to eq (starting_database_count)
+            expect(Character.count).to eq (starting_character_count)
+            expect(Player.count).to eq (starting_player_count)
             # add a starting_db_player_count variable to check for Player deleted too?
         end
     end
