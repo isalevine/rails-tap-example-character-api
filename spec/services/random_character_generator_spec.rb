@@ -34,7 +34,7 @@ RSpec.describe RandomCharacterGenerator do
             Player.last.delete
             expect(Character.count).to eq (starting_character_count)
             expect(Player.count).to eq (starting_player_count)
-            # add a starting_db_player_count variable to check for Player deleted too?
+            # do expect() calls still work as tests in a before/after block?
         end
     end
 
