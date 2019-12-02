@@ -3,12 +3,26 @@ require 'rails_helper'
 RSpec.describe RandomCharacterGenerator do
 
     describe "#new_character" do
-        starting_character_count = Character.count
-        starting_player_count = Player.count
+        
+        # refactoring based on BetterSpec / Andrew Brown advice
+        let(:starting_character_count) {
+            Character.count
+        }
 
-        rcg = RandomCharacterGenerator.new
-        player = Player.create(user_name: "Ronald McDonald", display_name: "Mac")
-        character = rcg.new_character("Ronnie the Rat", player)
+        let(:starting_player_count) {
+            Player.count
+        }
+
+        let(:player) {
+            Player.create(user_name: "Ronald McDonald", display_name: "Mac")
+        }
+
+        let(:character) {
+            rcg = RandomCharacterGenerator.new
+            character = rcg.new_character("Ronnie the Rat", player)            
+        }
+
+
 
         it "creates a new Character instance" do
             expect(character).to be_an_instance_of Character
