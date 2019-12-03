@@ -5,23 +5,14 @@ RSpec.describe RandomCharacterGenerator do
     describe "#new_character" do
         
         # refactoring based on BetterSpec / Andrew Brown advice
-        let(:starting_character_count) {
-            Character.count
-        }
-
-        let(:starting_player_count) {
-            Player.count
-        }
-
-        let(:player) {
-            Player.create(user_name: "Ronald McDonald", display_name: "Mac")
-        }
-
+        let(:starting_character_count)  { Character.count }
+        let(:starting_player_count)     { Player.count }
+        
+        let(:player)    { Player.create(user_name: "Ronald McDonald", display_name: "Mac") }
         let(:character) {
             rcg = RandomCharacterGenerator.new
             character = rcg.new_character("Ronnie the Rat", player)            
         }
-
 
 
         it "creates a new Character instance" do
