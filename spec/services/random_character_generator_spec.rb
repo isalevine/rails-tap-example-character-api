@@ -3,43 +3,45 @@ require 'rails_helper'
 RSpec.describe RandomCharacterGenerator do
 
     describe "#new_character" do
-        
-        # refactoring based on BetterSpec / Andrew Brown advice
-        let(:starting_character_count)  { Character.count }
-        let(:starting_player_count)     { Player.count }
-        
-        let(:player)    { Player.create(user_name: "Ronald McDonald", display_name: "Mac") }
-        let(:character) {
-            rcg = RandomCharacterGenerator.new
-            character = rcg.new_character("Ronnie the Rat", player)            
-        }
+
+        context "total success" do    
+            # refactoring based on BetterSpec / Andrew Brown advice
+            let(:starting_character_count)  { Character.count }
+            let(:starting_player_count)     { Player.count }
+            
+            let(:player)    { Player.create(user_name: "Ronald McDonald", display_name: "Mac") }
+            let(:character) {
+                rcg = RandomCharacterGenerator.new
+                character = rcg.new_character("Ronnie the Rat", player)            
+            }
 
 
-        it "creates a new Character instance" do
-            expect(character).to be_an_instance_of Character
-        end
+            it "creates a new Character instance" do
+                expect(character).to be_an_instance_of Character
+            end
 
-        it "randomly allocates all #{rcg.points_pool} stat points between #{rcg.stats_array.to_s}" do
-            expect(rcg.stats_array.reduce(0) {|points, stat| points += character[stat]}).to eq rcg.points_pool 
-        end
+            it "randomly allocates all #{rcg.points_pool} stat points between #{rcg.stats_array.to_s}" do
+                expect(rcg.stats_array.reduce(0) {|points, stat| points += character[stat]}).to eq rcg.points_pool 
+            end
 
-        it "allocates stat points so stat values are between 1 and max roll (#{rcg.max_roll})" do
-            expect(character.strength).to be_between(1, rcg.max_roll)
-            expect(character.dexterity).to be_between(1, rcg.max_roll)
-            expect(character.intelligence).to be_between(1, rcg.max_roll)
-            expect(character.charisma).to be_between(1, rcg.max_roll)
-        end
+            it "allocates stat points so stat values are between 1 and max roll (#{rcg.max_roll})" do
+                expect(character.strength).to be_between(1, rcg.max_roll)
+                expect(character.dexterity).to be_between(1, rcg.max_roll)
+                expect(character.intelligence).to be_between(1, rcg.max_roll)
+                expect(character.charisma).to be_between(1, rcg.max_roll)
+            end
 
-        it "saves the Character to the database" do
-            expect(Character.count).to eq (starting_character_count + 1)
-        end
+            it "saves the Character to the database" do
+                expect(Character.count).to eq (starting_character_count + 1)
+            end
 
-        after(:all) do
-            Character.last.delete
-            Player.last.delete
-            expect(Character.count).to eq (starting_character_count)
-            expect(Player.count).to eq (starting_player_count)
-            # do expect() calls still work as tests in a before/after block?
+            after(:all) do
+                Character.last.delete
+                Player.last.delete
+                expect(Character.count).to eq (starting_character_count)
+                expect(Player.count).to eq (starting_player_count)
+                # do expect() calls still work as tests in a before/after block?
+            end
         end
     end
 
