@@ -4,16 +4,26 @@ RSpec.describe RandomCharacterGenerator do
 
     describe "#new_character" do
 
-        context "total success" do    
-            # refactoring based on BetterSpec / Andrew Brown advice
-            let(:starting_character_count)  { Character.count }
-            let(:starting_player_count)     { Player.count }
+        # context "total success" do    
+            # # refactoring based on BetterSpec / Andrew Brown advice
+            # let(:starting_character_count)  { Character.count }
+            # let(:starting_player_count)     { Player.count }
             
-            let(:player)    { Player.create(user_name: "Ronald McDonald", display_name: "Mac") }
-            let(:character) {
-                rcg = RandomCharacterGenerator.new
-                character = rcg.new_character("Ronnie the Rat", player)            
-            }
+            # let(:player)    { Player.create(user_name: "Ronald McDonald", display_name: "Mac") }
+            # let(:character) {
+            #     rcg = RandomCharacterGenerator.new
+            #     character = rcg.new_character("Ronnie the Rat", player)            
+            # }
+
+
+
+            # NOTE: Do NOT create your test variables this way!! (See comments for why.) This is just an example for readability...
+            starting_database_count = Character.count
+
+            rcg = RandomCharacterGenerator.new
+            player = Player.create(user_name: "Ronald McDonald", display_name: "Mac")
+            character = rcg.new_character("Ronnie the Rat", player)
+
 
 
             it "creates a new Character instance" do
@@ -42,7 +52,7 @@ RSpec.describe RandomCharacterGenerator do
                 expect(Player.count).to eq (starting_player_count)
                 # do expect() calls still work as tests in a before/after block?
             end
-        end
+        # end
     end
 
 
