@@ -18,15 +18,11 @@ RSpec.describe RandomCharacterGenerator do
             # end
             # let(:starting_player_count)     { Player.count }
             
-            # # shifted `let` sequence outside of context above
-            # let(:rcg)       { RandomCharacterGenerator.new }
-            # let(:player)    { Player.create(user_name: "Ronald McDonald", display_name: "Mac") }
-            # let(:character) { rcg.new_character("Ronnie the Rat", player) }
-
-
-            it "creates a new Character instance" do
-                expect(character).to be_an_instance_of Character
-            end
+            
+            # it "creates a new Character instance" do
+            #     expect(character).to be_an_instance_of Character
+            # end
+            it { expect(character).to be_an_instance_of Character}
 
             # THESE TESTS NO LONGER WORK with the way rcg is instantiated!
             # need to look into other ways to test rcg state across tests...
@@ -62,6 +58,10 @@ RSpec.describe RandomCharacterGenerator do
                 expect(character).to be_an_instance_of Character
                 expect(duplicate).to eq "Character not created -- name already exists!"
             end
+
+            # # this does not work, since `character` and `duplicate` are created in different `it` scopes
+            # it { expect(character).to be_an_instance_of Character }
+            # it { expect(duplicate).to eq "Character not created -- name already exists!"}
         end
     end
 
