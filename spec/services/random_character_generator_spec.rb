@@ -3,8 +3,12 @@ require 'rails_helper'
 RSpec.describe RandomCharacterGenerator do
 
     describe "#new_character" do
+        let(:rcg)       { RandomCharacterGenerator.new }
+        let(:player)    { Player.create(user_name: "Ronald McDonald", display_name: "Mac") }
+        let(:character) { rcg.new_character("Ronnie the Rat", player) }
+        let(:duplicate) { rcg.new_character("Ronnie the Rat", player) }
 
-        # context "total success" do    
+        context "success" do    
             # # refactoring based on BetterSpec / Andrew Brown advice
 
             # # do EITHER of these options actually work with `let`?
@@ -14,9 +18,10 @@ RSpec.describe RandomCharacterGenerator do
             # end
             # let(:starting_player_count)     { Player.count }
             
-            let(:rcg)       { RandomCharacterGenerator.new }
-            let(:player)    { Player.create(user_name: "Ronald McDonald", display_name: "Mac") }
-            let(:character) { rcg.new_character("Ronnie the Rat", player) }
+            # # shifted `let` sequence outside of context above
+            # let(:rcg)       { RandomCharacterGenerator.new }
+            # let(:player)    { Player.create(user_name: "Ronald McDonald", display_name: "Mac") }
+            # let(:character) { rcg.new_character("Ronnie the Rat", player) }
 
 
             it "creates a new Character instance" do
@@ -50,7 +55,14 @@ RSpec.describe RandomCharacterGenerator do
             #     expect(Player.count).to eq (starting_player_count)
             #     # do expect() calls still work as tests in a before/after block?
             # end
-        # end
+        end
+
+        context "failure" do
+            it "does not create a new Character instance" do
+                expect(character).to be_an_instance_of Character
+                expect(duplicate).to eq "Character not created -- name already exists!"
+            end
+        end
     end
 
 

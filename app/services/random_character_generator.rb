@@ -13,6 +13,8 @@ class RandomCharacterGenerator
             roll_stats(character, @stats_array, @points_pool, @max_roll)
             character.save!
         end
+    rescue ActiveRecord::RecordInvalid
+        return "Character not created -- name already exists!"
     end
 
 
