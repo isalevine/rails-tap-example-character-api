@@ -57,8 +57,8 @@ RSpec.describe RandomCharacterGenerator do
             # end
         end
 
-        context "failure" do
-            it "does not create a new Character instance" do
+        context "failure (non-unique name)" do
+            it "returns a message that Character is not created" do
                 expect(character).to be_an_instance_of Character
                 expect(duplicate).to eq "Character not created -- name already exists!"
             end
